@@ -21,6 +21,8 @@ const verifyToken = (token) =>
 const login = async (req, res) => {
   let request = req.body;
   const { email, password } = request;
+  console.log('request', request);
+
   if (!email || !password) {
     return res.status(400).send({ msg: 'Email and password required' });
   }
@@ -34,12 +36,15 @@ const login = async (req, res) => {
     const match = await bcrypt.compare(password, user.password);
 
     if (!match) {
-      return res.status(401).send(invalid);
+      return res
+        .status(401)
+        .send({ message: 'Invalid email and passoword combination' });
     }
 
     let token = newToken(user);
     return res.status(201).send({ token });
   } catch (error) {
+    console.error(error);
     return res.status(500).end();
   }
 };
@@ -78,6 +83,7 @@ const register = async (req, res) => {
 
     return res.status(200).send({ token });
   } catch (e) {
+    console.error('error:', e);
     return res.status(500).send(invalid);
   }
 };

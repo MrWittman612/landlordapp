@@ -1,15 +1,15 @@
 import {
-  login,
-  register,
-  logout,
-  clear_errors,
-  auth_error,
-  user_loaded,
+  LOGIN,
+  REGISTER,
+  LOGOUT,
+  CLEAR_ERRORS,
+  AUTH_ERROR,
+  USER_LOADED,
 } from '../types';
 
 export default (state, action) => {
   switch (action.type) {
-    case user_loaded:
+    case USER_LOADED:
       return {
         ...state,
         isAuthenticated: true,
@@ -17,17 +17,18 @@ export default (state, action) => {
         user: action.payload,
       };
 
-    case login:
-    case register:
+    case LOGIN:
+    case REGISTER:
       localStorage.setItem('token', action.payload.token);
+      console.log(action.payload);
       return {
         ...state,
         ...action.payload,
         isAuthenticated: true,
         loading: false,
       };
-    case auth_error:
-    case logout:
+    case AUTH_ERROR:
+    case LOGOUT:
       localStorage.removeItem('token');
       return {
         ...state,
@@ -38,7 +39,7 @@ export default (state, action) => {
         error: action.payload,
       };
 
-    case clear_errors:
+    case CLEAR_ERRORS:
       return {
         ...state,
         error: null,

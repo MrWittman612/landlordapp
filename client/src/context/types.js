@@ -1,6 +1,6 @@
-export const login = 'login';
-export const register = 'register';
-export const logout = 'logout';
-export const clear_errors = 'clear_errors';
-export const user_loaded = 'user_loaded';
-export const auth_error = 'auth_error';
+export const LOGIN = 'LOGIN';
+export const REGISTER = 'REGISTER';
+export const LOGOUT = 'LOGOUT';
+export const CLEAR_ERRORS = 'CLEAR_ERRORS';
+export const USER_LOADED = 'USER_LOADED';
+export const AUTH_ERROR = 'AUTH_ERROR';
